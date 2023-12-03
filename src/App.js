@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import './styles.css'
+import { useState } from 'react';
 
-function App() {
+const App = () => {
+
+  let [task, setTask] = useState()
+  let [incompleteTask, setIncompleteTask] = useState()
+  let [completeTask, setCompleteTask] = useState()
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+        <div className='header'>
+        <h2>Task Tracker App</h2>
+        <button className='add-task'>Add Tasks</button>
+      </div>
+      <div className='row row-cards'>
+      <div class="col-card">
+        <b>Ongoing Tasks</b>
+        <div class="col-bg">
+        
+        </div>
+     </div>
+      <div class="col-card">
+      <b>Incomplete Tasks</b>
+        <div class="col-bg">
+        
+        </div>
+     </div>
+      <div class="col-card">
+      <b>Completed Tasks</b>
+        <div class="col-bg">
+        {/* &nbsp;&nbsp; */}
+        </div>
+     </div>
+      </div>
     </div>
   );
 }
 
-export default App;
+export default App
