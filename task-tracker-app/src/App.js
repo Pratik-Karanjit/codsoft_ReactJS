@@ -11,6 +11,7 @@ const App = () => {
 
 
   return (
+    //Main div
     <div className='container'>
         <div className='header'>
         <h2>Task Tracker App</h2>
