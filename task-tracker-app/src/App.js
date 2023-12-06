@@ -14,6 +14,7 @@ const App = () => {
     //Main div
     <div className='container'>
         <div className='header'>
+          {/* heading in h2 */}
         <h2>Task Tracker App</h2>
         <button className='add-task'>Add Tasks</button>
       </div>
