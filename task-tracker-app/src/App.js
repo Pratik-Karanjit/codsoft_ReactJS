@@ -7,7 +7,6 @@ const App = () => {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState('');              //A state variable to store the input value for adding a new task.
 
-
 //Updates the newTask state when the input in the task form changes.
   const handleTaskChange = (event) => {
     setNewTask(event.target.value);
@@ -22,6 +21,16 @@ const App = () => {
     }
   };
 
+  const handleCancelTask = () => {
+    setShowTaskForm(false); // Hide the task form
+  }
+
+  // const handleAddTaskClick = () => {
+  //   setShowTaskForm(true);
+  //   navigate('/new-task'); // Navigate to the "/new-task" route
+  // };
+
+
   return (
     <div className='container'>
       <div className='header'>
@@ -30,21 +39,10 @@ const App = () => {
           Add Tasks
         </button>
       </div>
-
-      <div className='row row-cards'>
-        <div className='col-card'>
-          <b>Ongoing Tasks</b>
-          <div className='col-bg'>
-            {/* Display ongoing tasks */}
-            {tasks.map((task, index) => (
-              <div key={index}>{task}</div>
-            ))}
-          </div>
-        </div>
-
         {/* Add Task Form */}
         {showTaskForm && (
           <div className='add-task-form'>
+          
             <input
               type='text'
               placeholder='Enter task...'
@@ -52,9 +50,23 @@ const App = () => {
               onChange={handleTaskChange}
             />
             <button onClick={handleAddTask}>Save Task</button>
+            <button onClick={handleCancelTask}>Cancel Task</button>
           </div>
         )}
 
+
+      <div className='row row-cards'>
+        <div className='col-card'>
+          <b>Ongoing Tasks</b>
+          <div className='col-bg'>
+            {/* Display ongoing tasks */}
+            {tasks.map((task, index) => (
+              <div className = "add-task-here" key={index}>{task}</div>
+            ))}
+          </div>
+        </div>
+
+      
         <div className='col-card'>
           <b>Incomplete Tasks</b>
           <div className='col-bg'>{/* Display incomplete tasks */}</div>
