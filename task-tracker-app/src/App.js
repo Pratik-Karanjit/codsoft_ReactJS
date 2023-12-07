@@ -5,22 +5,20 @@ const App = () => {
   // State Hooks
   const [showTaskForm, setShowTaskForm] = useState(false);
   const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState('');
+  const [newTask, setNewTask] = useState('');              //A state variable to store the input value for adding a new task.
 
-  // Function to handle task input change
+
+//Updates the newTask state when the input in the task form changes.
   const handleTaskChange = (event) => {
     setNewTask(event.target.value);
   };
 
   // Function to handle form submission
   const handleAddTask = () => {
-    if (newTask.trim() !== '') {
-      // Add the new task to the ongoing tasks list
-      setTasks([...tasks, newTask]);
-      // Clear the input field
-      setNewTask('');
-      // Hide the task form
-      setShowTaskForm(false);
+    if (newTask.trim() !== '') {             //trim() removes any whitespace and !== '' checks if the trimmed value of newTask is not an empty string
+      setTasks([...tasks, newTask]);        //Spread operator to call tasks array defined in useState and appending newTask state to it to add a new task to the end of the array
+      setNewTask('');                      // Clear the input field        
+      setShowTaskForm(false);             // Hide the task form 
     }
   };
 
