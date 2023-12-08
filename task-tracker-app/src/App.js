@@ -25,11 +25,12 @@ const App = () => {
     setShowTaskForm(false); // Hide the task form
   }
 
-  // const handleAddTaskClick = () => {
-  //   setShowTaskForm(true);
-  //   navigate('/new-task'); // Navigate to the "/new-task" route
-  // };
-
+  const handleDeleteTask = (index) => {
+    const updatedTasks = [...tasks];
+    updatedTasks.splice(index, 1);           // Remove the task at the specified index
+    setTasks(updatedTasks);                 // Update the state to reflect the changes
+  };
+  
 
   return (
     <div className='container'>
@@ -59,11 +60,17 @@ const App = () => {
 
       <div className='row row-cards'>
         <div className='col-card'>
-          <b>Ongoing Tasks</b>
+          <b>Tasks</b>
           <div className='col-bg'>
             {/* Display ongoing tasks */}
             {tasks.map((task, index) => (
-              <div className = "add-task-here" key={index}>{task}</div>
+              <div className = "add-task-here" key={index}>
+                <p>{task}</p>
+                <div>
+                <button className='mark-complete-button'>Mark as completed</button>
+                <button className='delete-button' onClick={() => handleDeleteTask(index)}>Delete</button>
+                </div>
+                 </div>
             ))}
           </div>
         </div>

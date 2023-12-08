@@ -85,4 +85,20 @@
 
 .add-task-here{
   margin-top: 1rem;
+  display: flex;
+}
+
+.mark-complete-button, .delete-button{
+  padding: 8px;
+  background-color: #4caf50; /* Green */
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: auto; 
+  margin-left: 1rem;
+  border-radius: 6px;
+}
+
+.delete-button{
+  background-color: red !important;
 }
