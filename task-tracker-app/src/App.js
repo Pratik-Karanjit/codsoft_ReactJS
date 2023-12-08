@@ -49,7 +49,9 @@ const App = () => {
               value={newTask}
               onChange={handleTaskChange}
             />
-            <button onClick={handleAddTask}>Save Task</button>
+
+            {/* add and cancel tasks buttons */}
+            <button onClick={handleAddTask}>Save Task</button>           
             <button onClick={handleCancelTask}>Cancel Task</button>
           </div>
         )}
