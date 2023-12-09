@@ -88,6 +88,9 @@
   display: flex;
 }
 
+
+/* mark complete and delete button css */
+
 .mark-complete-button, .delete-button{
   padding: 8px;
   background-color: #4caf50; /* Green */
