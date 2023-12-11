@@ -54,12 +54,20 @@ const handleMarkAsComplete = (index) => {
     setEditedTask(incompleteTasks[index]);
   };
 
-  const handleUpdateTask = () => {
-    const updatedTasks = [...incompleteTasks];
-    updatedTasks[editTaskIndex] = editedTask;
-    setIncompleteTasks(updatedTasks);
-    setEditTaskIndex(null);
-  };
+// Function to update a task in the incompleteTasks array
+const handleUpdateTask = () => {
+  // Create a copy of the incompleteTasks array
+  const updatedTasks = [...incompleteTasks];
+
+  // Update the task at the specified index with the edited task content
+  updatedTasks[editTaskIndex] = editedTask;
+
+  // Set the incompleteTasks state with the updated array
+  setIncompleteTasks(updatedTasks);
+
+  // Reset the editTaskIndex to null to signify that editing is complete
+  setEditTaskIndex(null);
+};
 
   return (
     <div className='container'>
