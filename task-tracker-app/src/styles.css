@@ -89,16 +89,15 @@
 .add-task-form input{
   width: 20%;
 }
-
-.add-task-here{
+.add-task-here {
   margin-top: 1rem;
   display: flex;
+  align-items: center;
 }
-
 
 /* mark complete and delete button css */
 
-.mark-complete-button, .delete-button{
+.mark-complete-button, .delete-button, .update-button{
   padding: 8px;
   background-color: #4caf50; /* Green */
   color: white;

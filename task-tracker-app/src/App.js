@@ -4,33 +4,62 @@ import './styles.css';
 const App = () => {
   // State Hooks
   const [showTaskForm, setShowTaskForm] = useState(false);
-  const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState('');              //A state variable to store the input value for adding a new task.
+  const [incompleteTasks, setIncompleteTasks] = useState([]);
+  const [completedTasks, setCompletedTasks] = useState([]);
+  const [newTask, setNewTask] = useState('');
+  const [editTaskIndex, setEditTaskIndex] = useState(null);
+  const [editedTask, setEditedTask] = useState('');
 
-//Updates the newTask state when the input in the task form changes.
+  // Updates the newTask state when the input in the task form changes.
   const handleTaskChange = (event) => {
     setNewTask(event.target.value);
   };
 
   // Function to handle form submission
   const handleAddTask = () => {
-    if (newTask.trim() !== '') {             //trim() removes any whitespace and !== '' checks if the trimmed value of newTask is not an empty string
-      setTasks([...tasks, newTask]);        //Spread operator to call tasks array defined in useState and appending newTask state to it to add a new task to the end of the array
-      setNewTask('');                      // Clear the input field        
-      setShowTaskForm(false);             // Hide the task form 
+    if (newTask.trim() !== '') {
+      setIncompleteTasks([...incompleteTasks, newTask]);
+      setNewTask('');
+      setShowTaskForm(false);
     }
   };
 
   const handleCancelTask = () => {
-    setShowTaskForm(false); // Hide the task form
+    setShowTaskForm(false);
   }
 
-  const handleDeleteTask = (index) => {
-    const updatedTasks = [...tasks];
-    updatedTasks.splice(index, 1);           // Remove the task at the specified index
-    setTasks(updatedTasks);                 // Update the state to reflect the changes
+// Function to delete a task (either incomplete or completed)
+const handleDeleteTask = (index, isComplete) => {
+  const updatedTasks = isComplete ? [...completedTasks] : [...incompleteTasks];        // Create a copy of the tasks array based on whether the task is complete or incomplete
+  updatedTasks.splice(index, 1);                                                      //Remove task at specified index
+  isComplete ? setCompletedTasks(updatedTasks) : setIncompleteTasks(updatedTasks);      // Update the state based on whether the task is complete or incomplete
+};
+
+
+// Function to mark a task as complete
+const handleMarkAsComplete = (index) => {
+  // Get the task that is being marked as complete
+  const taskToComplete = incompleteTasks[index];
+
+  // Add the completed task to the completedTasks array
+  setCompletedTasks([...completedTasks, taskToComplete]);
+
+  // Delete the task from the incompleteTasks array
+  handleDeleteTask(index, false);
+};
+
+
+  const handleEditTask = (index) => {
+    setEditTaskIndex(index);
+    setEditedTask(incompleteTasks[index]);
   };
-  
+
+  const handleUpdateTask = () => {
+    const updatedTasks = [...incompleteTasks];
+    updatedTasks[editTaskIndex] = editedTask;
+    setIncompleteTasks(updatedTasks);
+    setEditTaskIndex(null);
+  };
 
   return (
     <div className='container'>
@@ -40,50 +69,74 @@ const App = () => {
           Add Tasks
         </button>
       </div>
-        {/* Add Task Form */}
-        {showTaskForm && (
-          <div className='add-task-form'>
-          
-            <input
-              type='text'
-              placeholder='Enter task...'
-              value={newTask}
-              onChange={handleTaskChange}
-            />
 
-            {/* add and cancel tasks buttons */}
-            <button onClick={handleAddTask}>Save Task</button>           
-            <button onClick={handleCancelTask}>Cancel Task</button>
-          </div>
-        )}
-
+      {showTaskForm && (
+        <div className='add-task-form'>
+          <input
+            type='text'
+            placeholder='Enter task...'
+            value={newTask}
+            onChange={handleTaskChange}
+          />
+          <button onClick={handleAddTask}>Save Task</button>
+          <button onClick={handleCancelTask}>Cancel Task</button>
+        </div>
+      )}
 
       <div className='row row-cards'>
-        <div className='col-card'>
+      <div className='col-card'>
           <b>Tasks</b>
           <div className='col-bg'>
-            {/* Display ongoing tasks */}
-            {tasks.map((task, index) => (
-              <div className = "add-task-here" key={index}>
-                <p>{task}</p>
-                <div>
-                <button className='mark-complete-button'>Mark as completed</button>
-                <button className='delete-button' onClick={() => handleDeleteTask(index)}>Delete</button>
-                </div>
-                 </div>
+            {incompleteTasks.map((task, index) => (
+              <div className='add-task-here' key={index}>
+                {editTaskIndex === index ? (
+                  <div>
+                    <input
+                      type='text'
+                      value={editedTask}
+                      onChange={(e) => setEditedTask(e.target.value)}
+                    />
+                    <button className='update-button' onClick={handleUpdateTask}>Update</button>
+                  </div>
+                ) : (
+                  <div>
+                    <p>{task}</p>
+                    <div>
+                      <button
+                        className='mark-complete-button'
+                        onClick={() => handleMarkAsComplete(index)}
+                      >
+                        Mark as completed
+                      </button>
+                      <button className='update-button' onClick={() => handleEditTask(index)}>Edit</button>
+                      <button
+                        className='delete-button'
+                        onClick={() => handleDeleteTask(index, false)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         </div>
-
-      
-        <div className='col-card'>
-          <b>Incomplete Tasks</b>
-          <div className='col-bg'>{/* Display incomplete tasks */}</div>
-        </div>
-
         <div className='col-card'>
           <b>Completed Tasks</b>
-          <div className='col-bg'>{/* Display completed tasks */}</div>
+          <div className='col-bg'>
+            {completedTasks.map((task, index) => (
+              <div className='add-task-here' key={index}>
+                <p>{task}</p>
+                <button
+                  className='delete-button'
+                  onClick={() => handleDeleteTask(index, true)}
+                >
+                  Delete
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
