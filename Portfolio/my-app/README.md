@@ -17,7 +17,7 @@ Git (for cloning the repository)
 
 2. Getting Started
 
-git clone https://github.com/Pratik-Karanjit/codsoft_ReactJS
+git clone https://github.com/Pratik-Karanjit/codsoft_ReactJS.git
 
 To run frontend code:
 In terminal write these:
