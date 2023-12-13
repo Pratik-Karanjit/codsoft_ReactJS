@@ -108,6 +108,8 @@
   background-color: red !important;
 }
 
+
+/* for straight line display */
 .dis-flex {
   display: flex;
   flex-direction: row;
@@ -116,6 +118,7 @@
     padding: 0 2rem 0 1rem;
     align-items: center;
 }
+
 
 .dis-flex p {
   max-width: 400px;
