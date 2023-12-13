@@ -93,12 +93,14 @@ const handleUpdateTask = () => {
 
       <div className='row row-cards'>
       <div className='col-card'>
-          <b>Tasks</b>
+        <div className='card-title'>
+          <h4>Tasks</h4>
+        </div>
           <div className='col-bg'>
             {incompleteTasks.map((task, index) => (
               <div className='add-task-here' key={index}>
                 {editTaskIndex === index ? (
-                  <div>
+                  <div className='d-flex'>
                     <input
                       type='text'
                       value={editedTask}
@@ -107,7 +109,7 @@ const handleUpdateTask = () => {
                     <button className='update-button' onClick={handleUpdateTask}>Update</button>
                   </div>
                 ) : (
-                  <div>
+                  <div className='dis-flex'>
                     <p>{task}</p>
                     <div>
                       <button
