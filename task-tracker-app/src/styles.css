@@ -143,12 +143,83 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  .col-card {
+    height: auto; /* Adjust height as needed for smaller screens */
+  }
+
+  .add-task-here {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+  }
+
+  .add-task-here div {
+    margin-top: 0.5rem; /* Adjust spacing between elements */
+  }
+
+  .dis-flex p {
+    max-width: none; /* Allow paragraph to take full width on smaller screens */
+    white-space: normal; /* Allow text to wrap */
+    overflow: visible; /* Display overflowing text */
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1000px) {
+  .add-task-form button,
+  .add-task-form input,
+  .mark-complete-button,
+  .delete-button,
+  .update-button {
+    width: 90%; /* Full width for buttons on smaller screens */
+    margin: 2px;
+    padding: 10px; /* Adjust padding for even smaller buttons */
+    font-size: 13px; /* Adjust font size for even smaller buttons */
+  }
+}
+
 @media screen and (max-width: 400px) {
   .add-task-form button,
   .add-task-form input,
   .mark-complete-button,
   .delete-button,
   .update-button {
-    width: auto;
+    width: 80%; /* Full width for buttons on smaller screens */
+    padding: 8px; /* Adjust padding for even smaller buttons */
+    font-size: 12px; /* Adjust font size for even smaller buttons */
   }
 }
+
+
+@media screen and (min-width: 401px) and (max-width:767px){
+  .container {
+    padding-left: 4%;
+    padding-right: 4%;
+  }
+  .col-card {
+    height: auto; /* Adjust height as needed for smaller screens */
+  }
+
+  .add-task-here {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+  }
+
+  .add-task-here div {
+    margin-top: 0.5rem; /* Adjust spacing between elements */
+  }
+
+  .dis-flex p {
+    max-width: none; /* Allow paragraph to take full width on smaller screens */
+    white-space: normal; /* Allow text to wrap */
+    overflow: visible; /* Display overflowing text */
+  }
+  .add-task-form button,
+  .add-task-form input,
+  .mark-complete-button,
+  .delete-button,
+  .update-button {
+    width: 80%; /* Full width for buttons on smaller screens */
+    margin: 2px;
+    padding: 12px; /* Adjust padding for even smaller buttons */
+    font-size: 12px; /* Adjust font size for even smaller buttons */
+  }
+}
+
