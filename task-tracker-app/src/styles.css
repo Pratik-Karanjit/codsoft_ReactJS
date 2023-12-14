@@ -26,7 +26,7 @@
 
 .col-card{
   flex-basis:100%;
-  height: 200px;
+  height: 300px;
   background-color: #fff;
   border-radius: 7px;
 }
@@ -115,7 +115,7 @@
   flex-direction: row;
   width: -webkit-fill-available;
     justify-content: space-between;
-    padding: 0 2rem 0 1rem;
+    padding: 0.1rem 2rem 0 1rem; 
     align-items: center;
 }
 
@@ -127,8 +127,28 @@
   text-overflow: ellipsis;
 }
 
-.card-title {
+.card-title, .complete-card-title {
   padding: 2rem;
   background: linear-gradient(to right, #db3665, #ff3527);
   color: white;
+}
+
+
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  .container {
+    padding-left: 4%;
+    padding-right: 4%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .add-task-form button,
+  .add-task-form input,
+  .mark-complete-button,
+  .delete-button,
+  .update-button {
+    width: auto;
+  }
 }

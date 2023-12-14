@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles.css';
 
 const App = () => {
@@ -9,6 +9,25 @@ const App = () => {
   const [newTask, setNewTask] = useState('');
   const [editTaskIndex, setEditTaskIndex] = useState(null);
   const [editedTask, setEditedTask] = useState('');
+
+
+  // Load tasks from localStorage on component mount
+  useEffect(() => {
+    const storedIncompleteTasks = JSON.parse(localStorage.getItem('incompleteTasks')) || [];
+    const storedCompletedTasks = JSON.parse(localStorage.getItem('completedTasks')) || [];
+
+    setIncompleteTasks(storedIncompleteTasks);
+    setCompletedTasks(storedCompletedTasks);
+  }, []);
+
+  // Save tasks to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('incompleteTasks', JSON.stringify(incompleteTasks));
+    localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
+  }, [incompleteTasks, completedTasks]);
+
+
+
 
   // Updates the newTask state when the input in the task form changes.
   const handleTaskChange = (event) => {
@@ -133,10 +152,12 @@ const handleUpdateTask = () => {
           </div>
         </div>
         <div className='col-card'>
+        <div className='complete-card-title'>
           <b>Completed Tasks</b>
+          </div>
           <div className='col-bg'>
             {completedTasks.map((task, index) => (
-              <div className='add-task-here' key={index}>
+               <div className='dis-flex'>
                 <p>{task}</p>
                 <button
                   className='delete-button'
@@ -146,8 +167,8 @@ const handleUpdateTask = () => {
                 </button>
               </div>
             ))}
-          </div>
-        </div>
+            </div>
+      </div>
       </div>
     </div>
   );
