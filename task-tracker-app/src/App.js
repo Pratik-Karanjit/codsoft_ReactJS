@@ -152,23 +152,28 @@ const handleUpdateTask = () => {
           </div>
         </div>
         <div className='col-card'>
-        <div className='complete-card-title'>
-          <b>Completed Tasks</b>
-          </div>
-          <div className='col-bg'>
-            {completedTasks.map((task, index) => (
-               <div className='dis-flex'>
-                <p>{task}</p>
-                <button
-                  className='delete-button'
-                  onClick={() => handleDeleteTask(index, true)}
-                >
-                  Delete
-                </button>
-              </div>
-            ))}
-            </div>
+  <div className='complete-card-title'>
+    <b>Completed Tasks</b>
+  </div>
+  <div className='col-bg'>
+    {completedTasks.map((task, index) => (
+      <div className='dis-flex' key={index}>
+        <p>
+          <span role="img" aria-label="Tick Mark">
+            ✔️
+          </span>{" "}
+          {task}
+        </p>
+        <button
+          className='delete-button'
+          onClick={() => handleDeleteTask(index, true)}
+        >
+          Delete
+        </button>
       </div>
+    ))}
+  </div>
+</div>
       </div>
     </div>
   );
