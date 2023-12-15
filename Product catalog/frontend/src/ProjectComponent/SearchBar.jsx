@@ -2,6 +2,8 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
+
+//search bar here
 const SearchBar = ({ onSearch }) => {
   const initialValues = {
     query: '',
