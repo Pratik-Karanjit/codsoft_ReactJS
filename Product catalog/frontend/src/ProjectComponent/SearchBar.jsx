@@ -15,6 +15,7 @@ const SearchBar = ({ onSearch }) => {
     query: Yup.string().required('Query is required'),
   });
 
+  //Submit
   const handleSubmit = (values) => {
     onSearch(values.query);
   };
