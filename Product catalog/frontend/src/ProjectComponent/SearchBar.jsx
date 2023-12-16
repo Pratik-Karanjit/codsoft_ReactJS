@@ -9,6 +9,8 @@ const SearchBar = ({ onSearch }) => {
     query: '',
   };
 
+
+  //validations
   const validationSchema = Yup.object().shape({
     query: Yup.string().required('Query is required'),
   });
