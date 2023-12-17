@@ -12,6 +12,7 @@ const CreateProductForm = () => {
     price: '',
     description: '',
     quantity: '',
+    // file: "",
   };
 
   const onSubmit = async (info) => {
@@ -21,6 +22,7 @@ const CreateProductForm = () => {
         method: 'post',
         data: info,
       });
+
 
       console.log('Product created successfully');
       navigate('/admin');
@@ -33,7 +35,7 @@ const CreateProductForm = () => {
     <div className="form-container">
       <h2 className="form-title">Create a New Product</h2>
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
-        <Form>
+          <Form>
           <div className="form-element-spacing">
             <label>Title:</label>
             <Field type="text" name="title" className="form-input" />
@@ -54,14 +56,24 @@ const CreateProductForm = () => {
             <Field type="number" name="quantity" className="form-input" />
           </div>
 
+{/*         
+          <div className="form-element-spacing">
+            <label>Image:</label>
+            <input type="file" onChange={(event) =>{
+              setFieldValue("file", event.currentTarget.files[0]);
+            }}></input>
+            </div> */}
+
           <ErrorMessage name="title" component="div" className="error-message" />
           <ErrorMessage name="price" component="div" className="error-message" />
           <ErrorMessage name="description" component="div" className="error-message" />
           <ErrorMessage name="quantity" component="div" className="error-message" />
+          <ErrorMessage name="image" component="div" className="error-message" />
           <button type="submit" className="form-button">
             Create Product
           </button>
-        </Form>
+          </Form>
+ 
       </Formik>
     </div>
   );
