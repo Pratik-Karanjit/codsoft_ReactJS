@@ -6,9 +6,10 @@ export let setLoginInfo =(data)=>{
 export let getLoginInfo = ()=>{
 
    let data= localStorage.getItem("info")
-   console.log('Login info',data)
+//    console.log('Login info',data)
 
    let parseData = JSON.parse(data)
+//    console.log("parsed data here",parseData)
 
    return(parseData)
 

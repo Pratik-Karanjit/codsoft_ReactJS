@@ -6,6 +6,10 @@ import '../ProjectCss/navbar.css';
 const NavBar = () => {
   const location = useLocation();
   const isLoggedIn = !!getLoginInfo()?.token; 
+  // console.log("************", isLoggedIn)
+  const isAdmin = getLoginInfo()?.token;
+  console.log("***", isAdmin);
+  
 
   useEffect(() => {
   }, [location]);
